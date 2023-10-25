@@ -44,7 +44,6 @@ nav ul li {
 .side-bar nav a:hover, .side-bar nav a:active {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    transform: scale(2);
 }
 
 .subsections {
@@ -83,4 +82,26 @@ nav ul li {
     overflow: auto;
     padding: 75px;
     color: rgb(68, 68, 68);
+    font-size: 22px;
+}
+
+.contents h1 {
+    font-size: 70px;
+}
+
+.contents h2 {
+    font-size: 48px;
+}
+
+.contents h3 {
+    font-size: 36px;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.content-2 {
+    flex: 50%;
 }
