@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Hat+Display">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/tls-style.css">
     </head>
     <body>
         <div class="window">
@@ -25,7 +26,7 @@
                         <li><a class="section" href="#" value="tls"> TLS &nbsp;<span class="section-opener hide">&#8250;</span></a>
                             <div class="subsections hide" id="subsections-tls">
                                 <ul>
-                                    <li class="subsection"><a href="tls.html">Goals and Assumtions</a></li>
+                                    <li class="subsection"><a href="tls.html">Goals and Assumptions</a></li>
                                     <li class="subsection"><a href="tls.html">TLS 1.2 and earlier</a></li>
                                     <li class="subsection"><a href="tls.html">TLS 1.3</a></li>
                                 </ul>
@@ -38,10 +39,41 @@
 
             <div class="contents">
                 <h1>Transport Layer Security (TLS)</h1>
-                Transport Layer Security (TLS) is a cryptographic protocol that aims to establish a secure communication between clients and servers while simultaneously preventing an adversary from eavesdropping, tampering, and forging messages. 
+                <p>
+                    Transport Layer Security (TLS) is a cryptographic protocol that aims to establish a secure communication between clients and servers while simultaneously preventing an adversary from eavesdropping, tampering, and forging messages. 
+                </p>
+                <div id="tls-overview">
+                    <div class="flex-item" id="tls-overview-1"><img src="../img/tls/client.png" width="150px"></div>
+                    <div class="arrows-wrapper-1 flex-item">
+                        <div class="item">
+                            <i class="fa fa-long-arrow-left arrow2" aria-hidden="true"></i>
+                        </div>
+                        Handshake Protocol
+                        <div class="item">
+                            <i class="fa fa-long-arrow-right arrow1" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="arrows-wrapper-2 flex-item">
+                        <div class="item">
+                            <i class="fa fa-long-arrow-left arrow2" aria-hidden="true"></i>
+                        </div>
+                        Record Protocol
+                        <div class="item">
+                            <i class="fa fa-long-arrow-right arrow1" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="flex-item" id="tls-overview-4"><img src="../img/tls/server.png" width="150px"></div>
+                    <div class="flex-item" id="tls-overview-caption">Figure 1: TLS overview</div>
+                </div>
+                <p>
+                    In general, TLS consists of two protocols: the Handshake Protocol and the Record Protocol. 
+                    The <b>Handshake Protocol</b> is used to negotiate security parameters such as the cipher suite, to authenticate peers, and to establish key materials used in the Record Protocol. 
+                    The <b>Record Protocol</b> is used to protect data sent over the channel by using the key materials derived from the Handshake protocol to ensure confidentiality and integrity.     
+                </p>
 
                 <h2>Goals and Assumptions</h2>
-                TLS has three primary goals:
+                
+                <p>TLS has three primary goals:</p>
                 <ul>
                     <li><b>Entity Authentication:</b> The server-side of the channel is always authenticated. 
                         On the other hand, the client is optionally authenticated. The authentication is done either via asymmetric cryptography (e.g. signatures) or via a symmetric pre-shared key (PSK).</li>
@@ -49,7 +81,7 @@
                         To hide the length of the data, TLS offers an optional padding feature.</li>
                     <li><b>Integrity:</b> The data sent over the channel cannot be modified without being detected. This includes message insertion, reordering, and deletion. </li>
                 </ul>
-                Though not the main focus of TLS, TLS has a few noteworthy secondary goals:
+                <p>Though not the main focus of TLS, TLS has a few noteworthy secondary goals:</p>
                 <ul>
                     <li><b>Efficiency:</b> TLS aims to minimise the cryptographic overhead and the number of round-time-trips before establishing a secure channel (RTTs).</li>
                     <li><b>Flexibility:</b> Support a huge variety of algorithms and authentication methods.</li>
@@ -57,10 +89,111 @@
                     <li><b>Protection of negotiation:</b> Prevent an adversary from performing downgrade attacks.</li>
                 </ul>
 
-                It is assumed that an adversary has complete control of the network. The only requirement TLS has is a reliable, in-order transport (i.e. TCP). 
+                <p>It is assumed that an adversary has complete control of the network. The only requirement TLS has is a reliable, in-order transport (i.e. TCP). </p>
                 <h2>TLS 1.2 and earlier</h2>
-                Donec auctor pharetra risus. Morbi sed rhoncus dolor, id mattis magna. Curabitur non dolor et velit vestibulum rhoncus. Phasellus nulla ex, condimentum eget egestas eu, ultrices et sem. Ut quis euismod lectus, at euismod tellus. Sed sapien justo, commodo ut est non, vulputate congue tellus. Curabitur dapibus varius odio, in egestas urna hendrerit sit amet. Quisque nisl leo, ultrices ut mauris sit amet, porttitor pharetra ligula. Donec eget est mollis nibh vestibulum feugiat id eu ex. Mauris sit amet efficitur ligula, nec luctus nunc. Praesent nulla nisl, maximus quis purus mattis, tincidunt lacinia velit. Curabitur eu mauris et nunc fringilla auctor. Duis fringilla dui id est scelerisque, eu feugiat quam luctus. Pellentesque tellus arcu, sodales in facilisis in, tincidunt et turpis.
+                <h3>Handshake Protocol</h3>
+                <div id="tls-1_2-handshake">
+                    <div class="flex-item" id="tls-1_2-handshake-client"><img src="../img/tls/client.png" width="150px"></div>
+                    <div class="tls-1_2-handshake-1 flex-item">
+                        <code>ClientHello</code>
+                        <div class="item">
+                            <i class="fa fa-long-arrow-right arrow1" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="tls-1_2-handshake-2 flex-item">
+                        <div class="item">
+                            <i class="fa fa-long-arrow-left arrow2" aria-hidden="true"></i>
+                        </div>
+                        <code>ServerHello, ServerCertificate, ServerKeyExchange, ServerHelloDone</code>
+                    </div>
+                    <div class="tls-1_2-handshake-3 flex-item">
+                        <code>ClientCertificate, ClientKeyExchange, ChangeCipherSpec, ClientFinished</code>
+                        <div class="item">
+                            <i class="fa fa-long-arrow-right arrow1" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="tls-1_2-handshake-4 flex-item">
+                        <div class="item">
+                            <i class="fa fa-long-arrow-left arrow2" aria-hidden="true"></i>
+                        </div>
+                        <code>ChangeCipherSpec, ServerFinished</code>
+                    </div>
+                    <div class="flex-item" id="tls-1_2-handshake-server"><img src="../img/tls/server.png" width="150px"></div>
+                    <div class="flex-item" id="tls-1_2-handshake-caption">Figure 2: Handshake Protocol in TLS 1.2</div>
+                </div>
 
+                <p>
+                    The Handshake Protocol in TLS 1.2 runs as follows: 
+                    <ol>
+                        <li>After establishing a TCP connection via the TCP three-way handshake, the client sends a <code>ClientHello</code> to the server. The <code>ClientHello</code> contains a list of cipher suites and versions. </li>
+                        <li>The server responds with a <code>ServerHello</code> of the format <code>TLS_KEX_AUT_WITH_CIP_MAC</code>, where <code>KEX</code> stands for the key exchange (e.g. RSA, (EC)DHE), <code>AUT</code> stands for the authentication method (e.g. RSA, ECDSA), <code>CIP</code> stands for the cipher (e.g. RC4_128, AES_256_GCM), and <code>MAC</code> stands for (H)MAC (e.g. MD5, SHA256). Additionally, the server responds with a <code>ServerCertificate</code> and a <code>ServerKeyExchange</code> containing information for the key exchange, and a <code>ServerHelloDone</code>.  </li>
+                        <li>The clients sends a <code>ClientKeyExchange</code> containing information for the key exchange, a <code>ChangeCipherSpec</code> that indicates that the shared encryption keys were calculated and that all following messages from the client will be encrypted, and a <code>ClientFinished</code> to verify the handshake transcript. Optionally, the client can include a <code>ClientCertificate</code>.</li>
+                        <li>To complete the Handshake Protocol, the server responds with a <code>ChangeCipherSpec</code> and a <code>ServerFinished</code>.</li>
+                    </ol>
+                </p>
+
+                <h3>Record Protocol</h3>
+                <div id="tls-1_2-record">
+                    <div class="tls-1_2-stream flex-item" id="tls-1_2-stream-description">Stream</div>
+                    <div class="tls-1_2-stream flex-item" id="tls-1_2-stream-3"></div>
+                    <div class="tls-1_2-stream flex-item" id="tls-1_2-stream-4"></div>
+                    <div class="tls-1_2-stream flex-item" id="tls-1_2-stream-5"></div>
+                    <div class="tls-1_2-stream flex-item" id="tls-1_2-stream-6"></div>
+                    <div class="tls-1_2-stream flex-item" id="tls-1_2-stream-7"></div>
+                    <div class="tls-1_2-stream flex-item" id="tls-1_2-stream-8"></div>
+                    <div class="tls-1_2-stream flex-item" id="tls-1_2-stream-9"></div>
+                    <div class="item arrows-down flex-item" id="tls-1_2-arrow-1">
+                        <i class="fa fa-long-arrow-down arrow3" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="tls-1_2-fragment flex-item" id="tls-1_2-fragment-description">Fragment</div>
+                    <div class="tls-1_2-fragment flex-item" id="tls-1_2-fragment-header">Len || SQN || ...</div>
+                    <div class="tls-1_2-fragment flex-item" id="tls-1_2-fragment-payload">Payload</div>
+                    <div class="item arrows-down flex-item" id="tls-1_2-arrow-2">
+                        <i class="fa fa-long-arrow-down arrow3" aria-hidden="true"></i>
+                    </div>
+                    <div class="item arrows-down flex-item" id="tls-1_2-arrow-3">
+                        <i class="fa fa-long-arrow-down arrow3" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-item" id="tls-1_2-mac-description">MAC</div>
+                    <div class="flex-item" id="tls-1_2-mac">MAC</div>
+                    <div class="item arrows-down flex-item" id="tls-1_2-arrow-4">
+                        <i class="fa fa-long-arrow-down arrow3" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-item" id="tls-1_2-encode-description">Encode</div>
+                    <div class="tls-1_2-encode flex-item" id="tls-1_2-payload-encode">Payload</div>
+                    <div class="tls-1_2-encode flex-item" id="tls-1_2-tag">MAC Tag</div>
+                    <div class="tls-1_2-encode flex-item" id="tls-1_2-padding">Padding</div>
+                    
+                    <div class="item arrows-down flex-item" id="tls-1_2-arrow-5">
+                        <i class="fa fa-long-arrow-down arrow3" aria-hidden="true"></i>
+                    </div>
+                    <div class="item arrows-down flex-item" id="tls-1_2-arrow-6">
+                        <i class="fa fa-long-arrow-down arrow3" aria-hidden="true"></i>
+                    </div>
+                    <div class="item arrows-down flex-item" id="tls-1_2-arrow-7">
+                        <i class="fa fa-long-arrow-down arrow3" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-item" id="tls-1_2-encrypt-description">Encrypt</div>
+                    <div class="flex-item" id="tls-1_2-encrypt">Encrypt</div>
+                    <div class="item arrows-down flex-item" id="tls-1_2-arrow-8">
+                        <i class="fa fa-long-arrow-down arrow3" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-item" id="tls-1_2-output-description">Output</div>
+                    <div class="flex-item" id="tls-1_2-header-output">Header</div>
+                    <div class="flex-item" id="tls-1_2-ciphertext">Ciphertext</div>
+                    <div class="flex-item" id="tls-1_2-record-caption">Figure 3: Record Protocol in TLS 1.2 </div>
+                </div>
+                <p>
+                    TLS 1.2 uses a MAC-Encode-Encrypt approach to generate the ciphertexts. Note that padding in the Record Protocol is optional.
+                </p>
+
+                <h3>Issues</h3>
+                While it may seem convenient, TLS 1.2 and earlier had several flaws:
+                <ul>
+                    <li><b>Round-time-trips (RTTs):</b> To establish a secure channel between the client and the server, a TCP three-way handshake (1 RTT) and the TLS Handshake Protocol (2 RTT) is required. Thus, a total of 3 RTTs were performed, which is very inefficient.</li>
+                    <li><b>Vulnerabilities:</b> Countless vulnerabilities targeting TLS 1.2 and earlier versions were discovered, e.g. Bleichenbacher attack, Lucky 13, Heartbleed. </li>
+                </ul>
                 <h2>TLS 1.3</h2>
 
                 <h3>Record Protocol</h3>
