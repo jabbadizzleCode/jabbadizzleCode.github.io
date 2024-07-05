@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body {
+    padding-top: 50px;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+/* About */
+#profile {
+    position: relative;
+    top: -50px;
+    width: 100%;
+    height: 500px;
+}
+
+#background-image {
+    width: 100%;
+    height: 100%;
+    background-color:  rgb(0, 119, 255); /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right, rgb(0, 119, 255), rgb(63, 37, 179));
+}
+
+#transparent-layer {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background: rgba(59, 59, 59, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile-name {
+    font-size: 42px;
+}
+
+#profile-picture {
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile-picture img {
+    width: 100%;
+    border: 3px solid white;
+    border-width: 2px;
+    border-radius: 50%;
+}
+
+#profile-description {
+    max-width: 800px;
+    width: 100%;
+    padding-left: 100px;
+}
+
+.paragraph {
+    font-size: 16px;
+}
+
+.bold {
+    font-weight: 300;
+}
+
+.white {
+    color: white;
+}
+
+#contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-detail {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.contact-detail a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.contact-detail img {
+    width: 30px;
+    display: block;
+  margin: auto;
+}
+
+/* navigation bar */
+#navigation-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(240, 240, 240);
+}
+
+.navigation-option { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.navigation-option a {
+    color: rgb(40, 38, 38);
+    font-weight: 450;
+    text-decoration: none;
+    padding: 0px 10px;
+}
+
+.navigation-option a:visited {
+    color: rgb(40, 38, 38);
+}
+
+.navigation-option:hover {
+    background-color: rgb(228, 228, 228);
+}
+
+/* sections */
+.section {
+    margin: 50px auto 50px auto;
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: center;
+    align-items: left;
+}
+
+.section-header {
+    position: absolute;
+    top: -30px;
+    font-size: 36px;
+    margin: 0px 30px;
+    padding-bottom: 25px;
+    scroll-margin-top: 4rem;
+}
+
+
+.education-entry {
+    width: 100%;
+    display: flex;
+    padding-top: 25px;
+}
+
+
+.entry-logo, .entry-logo-two {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.entry-logo img {
+    width: 150px;
+    margin: 0px 0px 0px 30px;
+    padding-bottom: 10px;
+}
+
+.entry-logo-two {
+    display: flex;
+    flex-direction: column;
+}
+
+.entry-logo-two img {
+    width: 150px;
+    margin: 0px 0px 0px 30px;
+    padding-bottom: 10px;
+}
+
+.entry-description {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0px 30px;
+}
+
+
+/* awards */
+.awards-entry {
+    width: 100%;
+    display: flex;
+    padding-top: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.award-entry-description ul {
+    padding-left: 30px;
+}
+
+.award-entry-description ul li a, .award-entry-description ul li a:visited {
+    color:rgb(0, 119, 255);
+}
+
+.award-image {
+    width: 100%;
+    margin: 0px 30px;
+}
+
+.award-image img {
+    width: 100%;
+    border-radius: 100px;
+}
+
+.award-entry-description {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0px 30px;
+}
+
+
+footer {
+    padding: 8px;
+    background-color: rgb(51, 51, 51);
+    color: white;
+}
+
+@media screen and (max-width: 1280px) {
+    #profile {
+        height: 600px;
+    }
+
+    #transparent-layer {
+        flex-direction: column;
+    }
+
+    #profile-picture {
+        padding: 40px 0px 10px 0px;
+        width: 100%;
+    }
+    
+    #profile-picture img {
+        width: 85%;
+    }
+    
+    #profile-description {
+        padding: 0px;
+    }
+
+    #profile-name, #profile-description p {
+        margin: 0px 30px;
+    }
+
+    .awards-entry {
+        justify-content: center;  
+        flex-direction: column;
+    }
+
+    .award-entry-description {
+        max-width: 1100px;
+    }
+
+    .award-entry-description p, .award-entry-description h3, .award-entry-description h4, .award-entry-description ul {
+        margin: 0px 30px;
+    }
+
+    .award-image {
+        width: 80%;
+        margin: 25px auto;
+    }
+
+}
+
+@media screen and (max-width: 510px) {
+    #profile {
+        height: 700px;
+    }
+
+    #transparent-layer {
+        justify-content:flex-start;  
+        flex-direction: column;
+    }
+
+    #profile-picture {
+        padding: 60px 0px 10px 0px;
+        width: 100%;
+    }
+    
+    #profile-picture img {
+        width: 85%;
+    }
+    
+    #profile-description {
+        padding: 0px;
+    }
+
+    #profile-name, #profile-description p {
+        margin: 0px 30px;
+    }
+}
